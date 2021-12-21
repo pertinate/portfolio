@@ -1,42 +1,53 @@
 {
-  "name": "ts-backend-express-react-template",
+  "name": "portfiolio",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev --respawn src/index.ts",
-    "start": "tsc && node dist/index.js",
-    "publish:patch": "tsc && npm version patch --no-git-tag-version && npm publish",
-    "publish:minor": "tsc && npm version minor --no-git-tag-version && npm publish",
-    "publish:major": "tsc && npm version major --no-git-tag-version && npm publish",
-    "dev:all": "concurrently \"npm run dev\" \"cd ./client & npm run dev\"",
-    "install:all": "concurrently \"npm i\" \"cd ./client & npm i\"",
-    "install:clean:all": "concurrently \"npm ci\" \"cd ./client & npm ci\""
+    "dev": "nodemon --watch ./server -e ts -V -i src -L --exec ts-node -r dotenv/config --project tsconfig.server.json ./server/index.ts",
+    "build:next": "next build",
+    "build:server": "tsc --project tsconfig.server.json",
+    "build": "rm -rf ./target ; mkdir -p ./target && npm run build:next && npm run build:server && cp -r .next target/ && cp package.json target/ && cp -r dist target/dist",
+    "start": "NODE_ENV=production node --require dotenv/config dist/index.js",
+    "lint": "next lint"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "next": "^12.0.4",
+    "next-redux-wrapper": "^7.0.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.1",
+    "sass": "^1.44.0",
+    "swr": "^1.0.1",
+    "url-loader": "^4.1.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.11.11",
+    "@types/react": "^17.0.37",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "^12.0.4",
+    "moment": "^2.29.1",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.2"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pertinate/development.git"
+    "url": "git+https://github.com/pertinate/portfolio.git"
   },
-  "author": "",
-  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pertinate/development/issues"
+    "url": "https://github.com/pertinate/portfolio/issues"
   },
-  "homepage": "https://github.com/pertinate/development#readme",
-  "dependencies": {
-    "@types/express": "^4.17.7",
-    "@types/http-status-codes": "^1.2.0",
-    "@types/signale": "^1.4.1",
-    "concurrently": "^5.3.0",
-    "express": "^4.17.1",
-    "http-status-codes": "^2.1.2",
-    "npm-run-all": "^4.1.5",
-    "signale": "^1.4.0"
-  },
-  "devDependencies": {
-    "ts-node": "^8.10.2",
-    "ts-node-dev": "^1.0.0-pre.56",
-    "typescript": "^3.9.7"
-  }
+  "homepage": "https://github.com/pertinate/portfolio#readme"
 }
