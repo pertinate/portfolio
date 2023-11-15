@@ -12,6 +12,7 @@ import { windowsKey } from './windowRouter';
 interface Props {
     children?: ReactNode;
     window: windowsKey;
+    title: string;
 }
 
 const AppWindow = (props: Props) => {
@@ -41,7 +42,7 @@ const AppWindow = (props: Props) => {
             >
                 <Card.Section>
                     <div className='flex gap-8 pl-4 items-center mx-4 mt-4'>
-                        <Text className='select-none grow'>About Me</Text>
+                        <Text className='select-none grow'>{props.title}</Text>
                         <ButtonGroup>
                             <Button
                                 variant='default'
@@ -67,11 +68,6 @@ const AppWindow = (props: Props) => {
                     <Divider />
                 </Card.Section>
                 {props.children}
-                {/* <Text>This is content for the window</Text>
-                            <Text>This is content for the window</Text>
-                            <Text>This is content for the window</Text>
-                            <Text>This is content for the window</Text>
-                            <Text>This is content for the window</Text> */}
             </Card>
         </Rnd>
     );

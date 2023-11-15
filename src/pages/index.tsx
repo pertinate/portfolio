@@ -14,8 +14,13 @@ const SystemTime = dynamic(() => import('../components/systemTime'), {
 import { FaPersonBooth, FaMailBulk } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
 import PortfolioIcon from '~/components/portfolioIcon';
-import windowRouter, { windowsKey } from '~/components/windowRouter';
+import windowRouter, {
+    iconRouter,
+    windowsKey,
+} from '~/components/windowRouter';
 import { useStore } from '~/store/store';
+import { AboutMeIcon } from '~/components/windows/aboutMe';
+import { ContactMeIcon } from '~/components/windows/contactMe';
 
 export default function Home() {
     const store = useStore();
@@ -33,34 +38,8 @@ export default function Home() {
                 {isMobile == true && 'test'}
                 <div className='grow'>
                     <div className='flex flex-wrap gap-10 m-2 mx-10'>
-                        <PortfolioIcon>
-                            <Button
-                                variant='light'
-                                h={'100%'}
-                                onClick={() => {
-                                    store.windows.add('about_me');
-                                }}
-                            >
-                                <div className='flex flex-col justify-center items-center'>
-                                    <FaPersonBooth />
-                                    <Text size='xs'>About Me</Text>
-                                </div>
-                            </Button>
-                        </PortfolioIcon>
-                        <PortfolioIcon>
-                            <Button
-                                variant='light'
-                                h={'100%'}
-                                onClick={() => {
-                                    store.windows.add('contact_me');
-                                }}
-                            >
-                                <div className='flex flex-col justify-center items-center'>
-                                    <FaMailBulk />
-                                    <Text size='xs'>Contact Me</Text>
-                                </div>
-                            </Button>
-                        </PortfolioIcon>
+                        <AboutMeIcon />
+                        <ContactMeIcon />
                         {/* {new Array(50).fill(null).map((_, idx) => {
                             return (
                                 <div
@@ -92,7 +71,11 @@ export default function Home() {
                     withBorder
                 >
                     <div className='flex h-12 items-center'>
-                        <div className='grow'>grow</div>
+                        <div className='grow flex gap-10 ml-5'>
+                            {store.windows.opened.map(entry => (
+                                <>{iconRouter(entry)}</>
+                            ))}
+                        </div>
                         <SystemTime />
                     </div>
                 </Card>
