@@ -1,119 +1,102 @@
+import { Button, ButtonGroup, Card, Divider, Text } from '@mantine/core';
+import { useMediaQuery, useViewportSize } from '@mantine/hooks';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { Rnd } from 'react-rnd';
 
-import { api } from '~/utils/api';
+const SystemTime = dynamic(() => import('../components/systemTime'), {
+    ssr: false,
+});
+
+// import { api } from '~/utils/api';
+import { FaPersonBooth, FaMailBulk } from 'react-icons/fa';
+import dynamic from 'next/dynamic';
+import PortfolioIcon from '~/components/portfolioIcon';
+import windowRouter, { windowsKey } from '~/components/windowRouter';
+import { useStore } from '~/store/store';
 
 export default function Home() {
+    const store = useStore();
     // const hello = api.post.hello.useQuery({ text: 'from tRPC' });
+    const [openWindows, setOpenWindows] = useState<windowsKey[]>([]);
 
+    const isMobile = useMediaQuery('(max-width: 900px)');
     return (
-        <div className='flex-auto bg-gray-300 md:overflow-auto '>
+        <>
             <Head>
-                <title>Portfolio - Nicholas Evans</title>
-                <meta property='og:url' content='http://pertinate.info' />
-                <meta property='og:type' content='website' />
-                <meta
-                    property='og:title'
-                    content='Portfolio - Nicholas Evans'
-                />
-                <meta
-                    property='twitter:card'
-                    content={`Nicholas Evans' portfolio website`}
-                />
-                <meta
-                    property='og:description'
-                    content={`Nicholas Evans' portfolio website`}
-                />
-                <meta
-                    property='og:image'
-                    content='http://pertinate.info/images/logo.jpeg'
-                />
+                <title>Nicholas Evans</title>
             </Head>
-            <div className='flex flex-col justify-center pt-8 md:flex-row'>
-                <div className='mb-8 flex flex-col pr-4'>
-                    <div className='h-auto bg-white p-4 pr-48 shadow-md'>
-                        <h2 className='mb-8 text-2xl font-bold text-gray-600'>
-                            About Me
-                        </h2>
-                        <div className='flex flex-row items-baseline py-2'>
-                            <h4 className='mr-2 text-lg font-medium'>
-                                Languages:
-                            </h4>
-                            <p className='font-light'>
-                                Node.JS, TypeScript, C#
-                            </p>
-                        </div>
-                        <div className='flex flex-row items-baseline py-2'>
-                            <h4 className='mr-2 text-lg font-medium'>
-                                Frameworks:
-                            </h4>
-                            <p className='font-light'>
-                                React, Tailwind CSS, Firebase
-                            </p>
-                        </div>
-                        <div className='flex flex-row items-baseline py-2'>
-                            <h4 className='mr-2 text-lg font-medium'>
-                                Databases:
-                            </h4>
-                            <p className='font-light'>
-                                Azure SQL, MySQL, SQLite, Google BigQuery,
-                                PostGRE
-                            </p>
-                        </div>
-                        <div className='flex flex-row items-baseline py-2'>
-                            <h4 className='mr-2 text-lg font-medium'>Tools:</h4>
-                            <p className='font-light'>Git, CI/CD, Docker</p>
-                        </div>
-                        <div className='flex flex-row items-baseline py-2'>
-                            <h4 className='mr-2 text-lg font-medium'>
-                                Operating Systems:
-                            </h4>
-                            <p className='font-light'>
-                                Windows, Mac, Ubuntu, CentOS
-                            </p>
-                        </div>
+            <main className='h-full flex flex-col'>
+                {/* <Socials /> */}
+                {isMobile == true && 'test'}
+                <div className='grow'>
+                    <div className='flex flex-wrap gap-10 m-2 mx-10'>
+                        <PortfolioIcon>
+                            <Button
+                                variant='light'
+                                h={'100%'}
+                                onClick={() => {
+                                    store.windows.add('about_me');
+                                }}
+                            >
+                                <div className='flex flex-col justify-center items-center'>
+                                    <FaPersonBooth />
+                                    <Text size='xs'>About Me</Text>
+                                </div>
+                            </Button>
+                        </PortfolioIcon>
+                        <PortfolioIcon>
+                            <Button
+                                variant='light'
+                                h={'100%'}
+                                onClick={() => {
+                                    store.windows.add('contact_me');
+                                }}
+                            >
+                                <div className='flex flex-col justify-center items-center'>
+                                    <FaMailBulk />
+                                    <Text size='xs'>Contact Me</Text>
+                                </div>
+                            </Button>
+                        </PortfolioIcon>
+                        {/* {new Array(50).fill(null).map((_, idx) => {
+                            return (
+                                <div
+                                    className='w-16 h-16 flex justify-center items-center'
+                                    key={`app-${idx}`}
+                                >
+                                    <Button variant='light' h={'100%'}>
+                                        <div className='flex flex-col justify-center items-center'>
+                                            <FaPersonBooth />
+                                            <Text size='xs'>About Me</Text>
+                                        </div>
+                                    </Button>
+                                </div>
+                            );
+                        })} */}
+                        {/* <div className='grow flex-shrink-0 basis-auto' /> */}
                     </div>
-                    <div className='mt-8 h-auto bg-white p-4 pr-48 shadow-md'>
-                        <h2 className='mb-8 text-2xl font-bold text-gray-600'>
-                            Latest Project
-                        </h2>
-                    </div>
-                    <div className='mt-8 h-auto bg-white p-4 pr-48 shadow-md'>
-                        <h2 className='mb-8 text-2xl font-bold text-gray-600'>
-                            Project List
-                        </h2>
-                    </div>
-                    <div className='mt-8 h-auto bg-white p-4 pr-48 shadow-md'>
-                        <h2 className='mb-8 text-2xl font-bold text-gray-600'>
-                            Work Experience
-                        </h2>
-                        {/* <WorkExperience
-                            role='FullStack / DevOps Developer'
-                            company='Wal-Mart'
-                            timeSpan='(Sept 2019 - CURRENT)'
-                            roleDescription='Project Blue (Store down detection), Associate Call In tool'
-                            environments='React, Typescript, SQL, BigQuery, PostGRE, Nats.IO, Kafka, Cloud'
-                        /> */}
-                    </div>
+                    {store.windows.opened.map(entry => (
+                        <>{windowRouter(entry)}</>
+                    ))}
+                    {/* 6 */}
                 </div>
-                <div className='flex flex-col pb-8 pl-4'>
-                    <div className='h-auto bg-white p-4 pr-16 shadow-md'>
-                        {/* <div className='mx-4 my-8 flex flex-row'>
-                            <SiGooglemaps className='mr-2 h-6 w-6' />
-                            <p>Prairie Grove, Arkansas, United States</p>
-                        </div>
-                        <div className='mx-4 my-8 flex flex-row'>
-                            <HiMail className='mr-2 h-6 w-6' />
-                            <a>nicholas@pertinate.info</a>
-                        </div>
-                        <div className='mx-4 my-8 flex flex-row'>
-                            <HiDownload className='mr-2 h-6 w-6' />
-                            <a>Download Resume</a>
-                        </div> */}
+                <Card
+                    className='rounded-b-none'
+                    style={{
+                        borderRadius: 0,
+                        padding: 0,
+                    }}
+                    withBorder
+                >
+                    <div className='flex h-12 items-center'>
+                        <div className='grow'>grow</div>
+                        <SystemTime />
                     </div>
-                </div>
-            </div>
-        </div>
+                </Card>
+            </main>
+        </>
     );
 }
