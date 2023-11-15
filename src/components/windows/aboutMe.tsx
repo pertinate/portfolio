@@ -12,7 +12,7 @@ export const AboutMeIcon = () => {
                 variant='light'
                 h={'100%'}
                 onClick={() => {
-                    store.windows.add('about_me');
+                    store.windows.hide('about_me');
                 }}
             >
                 <div className='flex flex-col justify-center items-center'>

@@ -13,7 +13,8 @@ export type State = typeof state;
 export type Actions = {
     add: (window: windowsKey) => void;
     remove: (window: windowsKey) => void;
-    hide: (window: windowsKey, hide: boolean) => void;
+    toggle: (window: windowsKey) => void;
+    hide: (window: windowsKey) => void;
 };
 
 export type WindowsStore = State & Actions;
@@ -28,10 +29,6 @@ const actions: (
         add: window => {
             if (!get().opened.includes(window)) {
                 set({ opened: [...get().opened, window] });
-            } else {
-                if (get().hidden.includes(window)) {
-                    get().hide(window, false);
-                }
             }
         },
         remove: window => {
@@ -39,11 +36,27 @@ const actions: (
                 set({ opened: get().opened.filter(entry => entry != window) });
             }
         },
-        hide: (window, hide) => {
-            if (get().hidden.includes(window)) {
-                set({ hidden: get().hidden.filter(entry => entry != window) });
+        hide: window => {
+            if (get().opened.includes(window)) {
+                console.log('test');
+                if (get().hidden.includes(window)) {
+                    console.log('test');
+                    set({
+                        hidden: get().hidden.filter(entry => entry != window),
+                    });
+                } else {
+                    console.log('test');
+                    set({ hidden: [...get().hidden, window] });
+                }
             } else {
-                set({ hidden: [...get().hidden, window] });
+                get().add(window);
+            }
+        },
+        toggle: window => {
+            if (get().hidden.includes(window)) {
+                set({ opened: get().opened.filter(entry => entry != window) });
+            } else {
+                set({ opened: [...get().opened, window] });
             }
         },
     };

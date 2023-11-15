@@ -19,7 +19,7 @@ export const ContactMeIcon = () => {
                 variant='light'
                 h={'100%'}
                 onClick={() => {
-                    store.windows.add('contact_me');
+                    store.windows.hide('contact_me');
                 }}
             >
                 <div className='flex flex-col justify-center items-center'>

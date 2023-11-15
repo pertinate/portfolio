@@ -30,6 +30,7 @@ const AppWindow = (props: Props) => {
                     ? 'none'
                     : 'block',
             }}
+            bounds={'parent'}
         >
             <Card
                 withBorder
@@ -37,37 +38,34 @@ const AppWindow = (props: Props) => {
                     width: '100%',
                     height: '100%',
                     padding: 0,
+                    margin: 0,
                 }}
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             >
-                <Card.Section>
-                    <div className='flex gap-8 pl-4 items-center mx-4 mt-4'>
-                        <Text className='select-none grow'>{props.title}</Text>
-                        <ButtonGroup>
-                            <Button
-                                variant='default'
-                                onClick={() =>
-                                    store.windows.hide(props.window, true)
-                                }
-                            >
-                                <FaWindowMinimize />
-                            </Button>
-                            <Button variant='default'>
-                                <FaWindowMaximize />
-                            </Button>
-                            <Button
-                                variant='default'
-                                onClick={() => {
-                                    store.windows.remove(props.window);
-                                }}
-                            >
-                                <FaWindowClose />
-                            </Button>
-                        </ButtonGroup>
-                    </div>
-                    <Divider />
-                </Card.Section>
-                {props.children}
+                <div className='flex gap-8 pl-4 items-center'>
+                    <Text className='select-none grow'>{props.title}</Text>
+                    <ButtonGroup>
+                        <Button
+                            variant='default'
+                            onClick={() => store.windows.hide(props.window)}
+                        >
+                            <FaWindowMinimize />
+                        </Button>
+                        <Button variant='default'>
+                            <FaWindowMaximize />
+                        </Button>
+                        <Button
+                            variant='default'
+                            onClick={() => {
+                                store.windows.remove(props.window);
+                            }}
+                        >
+                            <FaWindowClose />
+                        </Button>
+                    </ButtonGroup>
+                </div>
+                <Divider />
+                <div className='test-body'>{props.children}</div>
             </Card>
         </Rnd>
     );

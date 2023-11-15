@@ -9,6 +9,9 @@
 #__next {
     height: 100%;
 }
+html {
+    overflow: hidden;
+}
 
 html,
 body,
