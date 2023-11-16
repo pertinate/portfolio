@@ -1,11 +1,6 @@
 import { Button, ButtonGroup, Card, Divider, Text } from '@mantine/core';
 import { type ReactNode, useEffect, useState } from 'react';
-import {
-    FaWindowMinimize,
-    FaWindowMaximize,
-    FaWindowClose,
-    FaMailBulk,
-} from 'react-icons/fa';
+import { FaMailBulk } from 'react-icons/fa';
 import { Rnd } from 'react-rnd';
 import { useStore } from '~/store/store';
 import AppWindow from '../appWindow';
@@ -19,7 +14,7 @@ export const ContactMeIcon = () => {
                 variant='light'
                 h={'100%'}
                 onClick={() => {
-                    store.windows.hide('contact_me');
+                    store.windows.toggleHide('contact_me');
                 }}
             >
                 <div className='flex flex-col justify-center items-center'>

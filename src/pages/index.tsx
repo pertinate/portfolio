@@ -25,7 +25,6 @@ import { ContactMeIcon } from '~/components/windows/contactMe';
 export default function Home() {
     const store = useStore();
     // const hello = api.post.hello.useQuery({ text: 'from tRPC' });
-    const [openWindows, setOpenWindows] = useState<windowsKey[]>([]);
 
     const isMobile = useMediaQuery('(max-width: 900px)');
     return (

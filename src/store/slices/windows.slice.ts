@@ -13,8 +13,10 @@ export type State = typeof state;
 export type Actions = {
     add: (window: windowsKey) => void;
     remove: (window: windowsKey) => void;
-    toggle: (window: windowsKey) => void;
     hide: (window: windowsKey) => void;
+    unhide: (window: windowsKey) => void;
+    toggle: (window: windowsKey) => void;
+    toggleHide: (window: windowsKey) => void;
 };
 
 export type WindowsStore = State & Actions;
@@ -36,7 +38,7 @@ const actions: (
                 set({ opened: get().opened.filter(entry => entry != window) });
             }
         },
-        hide: window => {
+        toggleHide: window => {
             if (get().opened.includes(window)) {
                 console.log('test');
                 if (get().hidden.includes(window)) {
@@ -57,6 +59,16 @@ const actions: (
                 set({ opened: get().opened.filter(entry => entry != window) });
             } else {
                 set({ opened: [...get().opened, window] });
+            }
+        },
+        hide: window => {
+            if (!get().opened.includes(window)) {
+                set({ hidden: [...get().hidden, window] });
+            }
+        },
+        unhide: window => {
+            if (get().opened.includes(window)) {
+                set({ hidden: get().hidden.filter(entry => entry != window) });
             }
         },
     };

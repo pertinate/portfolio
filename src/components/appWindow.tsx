@@ -1,5 +1,5 @@
 import { Card, ButtonGroup, Button, Divider, Text } from '@mantine/core';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import {
     FaWindowMinimize,
     FaWindowMaximize,
@@ -13,24 +13,48 @@ interface Props {
     children?: ReactNode;
     window: windowsKey;
     title: string;
+    width?: number;
+    height?: number;
 }
 
 const AppWindow = (props: Props) => {
     const store = useStore();
+    const [containerSize, setContainerSize] = useState({
+        width: props.width ?? 320,
+        height: props.height ?? 250,
+    });
+    const [containerPosition, setContainerPosition] = useState({
+        x: Math.floor(screen.availWidth / 2) - containerSize.width / 2,
+        y: Math.floor(screen.availHeight / 2) - containerSize.height / 2,
+    });
+
+    console.log(screen);
+
     return (
         <Rnd
-            default={{
-                x: 0,
-                y: 0,
-                width: 320,
-                height: 200,
-            }}
+            key={props.window}
             style={{
                 display: store.windows.hidden.includes(props.window)
                     ? 'none'
                     : 'block',
             }}
             bounds={'parent'}
+            size={{ width: containerSize.width, height: containerSize.height }}
+            position={{ x: containerPosition.x, y: containerPosition.y }}
+            onDragStop={(e, d) => {
+                console.log(e, d);
+                setContainerPosition({ x: d.x, y: d.y });
+            }}
+            onResizeStop={(e, direction, ref, delta, position) => {
+                console.log(e, direction, delta, position);
+                setContainerSize({
+                    width: Number(ref.style.width),
+                    height: Number(ref.style.height),
+                    ...position,
+                });
+            }}
+            cancel='#no-drag'
+            dragHandleClassName='drag-only'
         >
             <Card
                 withBorder
@@ -40,18 +64,35 @@ const AppWindow = (props: Props) => {
                     padding: 0,
                     margin: 0,
                 }}
+
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             >
-                <div className='flex gap-8 pl-4 items-center'>
-                    <Text className='select-none grow'>{props.title}</Text>
+                <div className='flex gap-8 items-center'>
+                    <div className='grow drag-only cursor-move pl-4'>
+                        <Text>{props.title}</Text>
+                    </div>
                     <ButtonGroup>
                         <Button
                             variant='default'
-                            onClick={() => store.windows.hide(props.window)}
+                            onClick={() =>
+                                store.windows.toggleHide(props.window)
+                            }
                         >
                             <FaWindowMinimize />
                         </Button>
-                        <Button variant='default'>
+                        <Button
+                            variant='default'
+                            onClick={() => {
+                                // setContainerSize({
+                                //     width: screen.width,
+                                //     height: screen.height - 300,
+                                // });
+                                // setContainerPosition({
+                                //     x: 0,
+                                //     y: 0,
+                                // });
+                            }}
+                        >
                             <FaWindowMaximize />
                         </Button>
                         <Button
@@ -65,7 +106,9 @@ const AppWindow = (props: Props) => {
                     </ButtonGroup>
                 </div>
                 <Divider />
-                <div className='test-body'>{props.children}</div>
+                <div className='overflow-auto grow' id='no-drag'>
+                    {props.children}
+                </div>
             </Card>
         </Rnd>
     );
