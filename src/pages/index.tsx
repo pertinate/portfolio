@@ -30,7 +30,20 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>Nicholas Evans</title>
+                <title>Nicholas Evans - Pertinate</title>
+                <meta
+                    name='description'
+                    content='Passionate Software Engineer with 4 years of experience in full-stack web development, specializing in TypeScript. Experienced in creating innovative solutions, from integrated API calls to developing a website for in-game item trading.'
+                />
+                <meta
+                    property='og:title'
+                    content='Nicholas Evans - Pertinate'
+                />
+                <meta
+                    property='og:description'
+                    content='Passionate Software Engineer with 4 years of experience in full-stack web development, specializing in TypeScript. Experienced in creating innovative solutions, from integrated API calls to developing a website for in-game item trading.'
+                />
+                <meta property='og:image' content='/favicon.ico' />
             </Head>
             <main className='h-full flex flex-col'>
                 {/* <Socials /> */}
@@ -39,27 +52,10 @@ export default function Home() {
                     <div className='flex flex-wrap gap-10 m-2 mx-10'>
                         <AboutMeIcon />
                         <ContactMeIcon />
-                        {/* {new Array(50).fill(null).map((_, idx) => {
-                            return (
-                                <div
-                                    className='w-16 h-16 flex justify-center items-center'
-                                    key={`app-${idx}`}
-                                >
-                                    <Button variant='light' h={'100%'}>
-                                        <div className='flex flex-col justify-center items-center'>
-                                            <FaPersonBooth />
-                                            <Text size='xs'>About Me</Text>
-                                        </div>
-                                    </Button>
-                                </div>
-                            );
-                        })} */}
-                        {/* <div className='grow flex-shrink-0 basis-auto' /> */}
                     </div>
                     {store.windows.opened.map(entry => (
                         <>{windowRouter(entry)}</>
                     ))}
-                    {/* 6 */}
                 </div>
                 <Card
                     className='rounded-b-none'

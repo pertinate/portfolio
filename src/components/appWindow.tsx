@@ -28,8 +28,6 @@ const AppWindow = (props: Props) => {
         y: Math.floor(screen.availHeight / 2) - containerSize.height / 2,
     });
 
-    console.log(screen);
-
     return (
         <Rnd
             key={props.window}
@@ -42,11 +40,9 @@ const AppWindow = (props: Props) => {
             size={{ width: containerSize.width, height: containerSize.height }}
             position={{ x: containerPosition.x, y: containerPosition.y }}
             onDragStop={(e, d) => {
-                console.log(e, d);
                 setContainerPosition({ x: d.x, y: d.y });
             }}
             onResizeStop={(e, direction, ref, delta, position) => {
-                console.log(e, direction, delta, position);
                 setContainerSize({
                     width: Number(ref.style.width),
                     height: Number(ref.style.height),
@@ -83,14 +79,14 @@ const AppWindow = (props: Props) => {
                         <Button
                             variant='default'
                             onClick={() => {
-                                // setContainerSize({
-                                //     width: screen.width,
-                                //     height: screen.height - 300,
-                                // });
-                                // setContainerPosition({
-                                //     x: 0,
-                                //     y: 0,
-                                // });
+                                setContainerSize({
+                                    width: screen.width,
+                                    height: screen.height - 300,
+                                });
+                                setContainerPosition({
+                                    x: 0,
+                                    y: 0,
+                                });
                             }}
                         >
                             <FaWindowMaximize />
