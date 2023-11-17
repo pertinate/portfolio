@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 import { withLenses } from '@dhmk/zustand-lens';
 import exampleSlice, { ExampleStore } from './slices/example.slice';
 import windowsSlice, { WindowsStore } from './slices/windows.slice';

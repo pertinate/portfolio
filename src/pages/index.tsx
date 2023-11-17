@@ -1,4 +1,11 @@
-import { Button, ButtonGroup, Card, Divider, Text } from '@mantine/core';
+import {
+    Button,
+    ButtonGroup,
+    Card,
+    Divider,
+    Text,
+    useMantineColorScheme,
+} from '@mantine/core';
 import { useMediaQuery, useViewportSize } from '@mantine/hooks';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Head from 'next/head';
@@ -11,7 +18,13 @@ const SystemTime = dynamic(() => import('../components/systemTime'), {
 });
 
 // import { api } from '~/utils/api';
-import { FaPersonBooth, FaMailBulk } from 'react-icons/fa';
+import {
+    FaPersonBooth,
+    FaMailBulk,
+    FaThemeco,
+    FaThemeisle,
+    FaToggleOn,
+} from 'react-icons/fa';
 import dynamic from 'next/dynamic';
 import PortfolioIcon from '~/components/portfolioIcon';
 import windowRouter, {
@@ -25,6 +38,7 @@ import { ContactMeIcon } from '~/components/windows/contactMe';
 export default function Home() {
     const store = useStore();
     // const hello = api.post.hello.useQuery({ text: 'from tRPC' });
+    const mantineColorScheme = useMantineColorScheme();
 
     const isMobile = useMediaQuery('(max-width: 900px)');
     return (

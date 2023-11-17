@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import { AboutMeIcon } from './windows/aboutMe';
 import { ContactMeIcon } from './windows/contactMe';
 
-const windows = ['about_me', 'contact_me'] as const;
+const windows = ['about_me', 'contact'] as const;
 
 export type windowsKey = (typeof windows)[number];
 
@@ -19,7 +19,7 @@ export const iconRouter = (window: windowsKey) => {
         return <AboutMeIcon />;
     }
 
-    if (window == 'contact_me') {
+    if (window == 'contact') {
         return <ContactMeIcon />;
     }
     return <>not found</>;
@@ -30,7 +30,7 @@ const windowRouter = (window: windowsKey) => {
         return <AboutMe />;
     }
 
-    if (window == 'contact_me') {
+    if (window == 'contact') {
         return <ContactMe />;
     }
 

@@ -11,6 +11,7 @@ import '@mantine/core/styles.css';
 
 const theme = createTheme({
     /** Put your mantine theme override here */
+    white: '#F9F9F9',
 });
 
 const MyApp: AppType<{ session: Session | null }> = ({
