@@ -34,6 +34,7 @@ import windowRouter, {
 import { useStore } from '~/store/store';
 import { AboutMeIcon } from '~/components/windows/aboutMe';
 import { ContactMeIcon } from '~/components/windows/contactMe';
+import { ThisStackIcon } from '~/components/windows/thisStack';
 
 export default function Home() {
     const store = useStore();
@@ -66,6 +67,7 @@ export default function Home() {
                     <div className='flex flex-wrap gap-10 m-2 mx-10'>
                         <AboutMeIcon />
                         <ContactMeIcon />
+                        <ThisStackIcon />
                     </div>
                     {store.windows.opened.map(entry => (
                         <>{windowRouter(entry)}</>

@@ -84,8 +84,8 @@ const AboutMe = () => {
             <div className='flex justify-center'>
                 <Button
                     onClick={() => {
-                        store.windows.add('contact_me');
-                        store.windows.unhide('contact_me');
+                        store.windows.add('contact');
+                        store.windows.unhide('contact');
                     }}
                 >
                     Contact Me

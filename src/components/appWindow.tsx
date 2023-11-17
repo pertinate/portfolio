@@ -63,11 +63,11 @@ const AppWindow = (props: Props) => {
 
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             >
-                <div className='flex gap-8 items-center'>
+                <div className='flex gap-8 items-center max-w-full'>
                     <div className='grow drag-only cursor-move pl-4'>
                         <Text>{props.title}</Text>
                     </div>
-                    <ButtonGroup>
+                    <ButtonGroup className='shrink-0'>
                         <Button
                             variant='default'
                             onClick={() =>
