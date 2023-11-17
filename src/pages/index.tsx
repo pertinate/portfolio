@@ -84,7 +84,7 @@ export default function Home() {
                     withBorder
                 >
                     <div className='flex h-12 items-center'>
-                        <div className='grow flex gap-10 ml-5'>
+                        <div className='grow flex gap-2 ml-1'>
                             {store.windows.opened.map(entry => (
                                 <>{iconRouter(entry)}</>
                             ))}
