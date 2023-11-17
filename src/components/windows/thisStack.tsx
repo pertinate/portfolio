@@ -11,6 +11,7 @@ export const ThisStackIcon = () => {
             <Button
                 variant='light'
                 h={'100%'}
+                fullWidth
                 onClick={() => {
                     store.windows.toggleHide('this_stack');
                 }}

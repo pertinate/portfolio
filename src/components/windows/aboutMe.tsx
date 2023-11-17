@@ -11,6 +11,7 @@ export const AboutMeIcon = () => {
             <Button
                 variant='light'
                 h={'100%'}
+                fullWidth
                 onClick={() => {
                     store.windows.toggleHide('about_me');
                 }}

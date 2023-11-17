@@ -7,7 +7,7 @@ interface Props {
 
 const PortfolioIcon = (props: Props) => {
     return (
-        <div className='w-16 h-16 flex justify-center items-center'>
+        <div className='w-auto h-16 flex justify-center items-center'>
             {props.children}
         </div>
     );

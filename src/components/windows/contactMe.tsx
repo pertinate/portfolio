@@ -14,6 +14,7 @@ export const ContactMeIcon = () => {
             <Button
                 variant='light'
                 h={'100%'}
+                fullWidth
                 onClick={() => {
                     store.windows.toggleHide('contact');
                 }}

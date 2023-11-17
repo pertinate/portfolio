@@ -35,6 +35,7 @@ import { useStore } from '~/store/store';
 import { AboutMeIcon } from '~/components/windows/aboutMe';
 import { ContactMeIcon } from '~/components/windows/contactMe';
 import { ThisStackIcon } from '~/components/windows/thisStack';
+import { CurrentProjectsIcon } from '~/components/windows/currentProjects';
 
 export default function Home() {
     const store = useStore();
@@ -64,10 +65,11 @@ export default function Home() {
                 {/* <Socials /> */}
                 {isMobile == true && 'test'}
                 <div className='grow'>
-                    <div className='flex flex-wrap gap-10 m-2 mx-10'>
+                    <div className='flex flex-wrap gap-4 m-2'>
                         <AboutMeIcon />
                         <ContactMeIcon />
                         <ThisStackIcon />
+                        <CurrentProjectsIcon />
                     </div>
                     {store.windows.opened.map(entry => (
                         <>{windowRouter(entry)}</>
