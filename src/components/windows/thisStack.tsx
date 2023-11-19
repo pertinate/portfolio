@@ -65,6 +65,7 @@ const ThisStack = () => {
                                     component={Link}
                                     href={'https://nextjs.org/'}
                                     variant='light'
+                                    target='_blank'
                                 >
                                     Next.js
                                 </Button>
@@ -74,6 +75,7 @@ const ThisStack = () => {
                                     component={Link}
                                     href={'https://create.t3.gg/'}
                                     variant='light'
+                                    target='_blank'
                                 >
                                     T3
                                 </Button>
@@ -83,6 +85,7 @@ const ThisStack = () => {
                                     component={Link}
                                     href={'https://www.prisma.io/'}
                                     variant='light'
+                                    target='_blank'
                                 >
                                     Prisma
                                 </Button>
@@ -92,6 +95,7 @@ const ThisStack = () => {
                                     component={Link}
                                     href={'https://mantine.dev/'}
                                     variant='light'
+                                    target='_blank'
                                 >
                                     Mantine
                                 </Button>
@@ -101,6 +105,7 @@ const ThisStack = () => {
                                     component={Link}
                                     href={'https://github.com/pmndrs/zustand'}
                                     variant='light'
+                                    target='_blank'
                                 >
                                     Zustand
                                 </Button>
@@ -110,6 +115,7 @@ const ThisStack = () => {
                                     component={Link}
                                     href={'https://zod.dev/'}
                                     variant='light'
+                                    target='_blank'
                                 >
                                     Zod
                                 </Button>
@@ -119,6 +125,7 @@ const ThisStack = () => {
                                     component={Link}
                                     href={'https://tailwindcss.com/'}
                                     variant='light'
+                                    target='_blank'
                                 >
                                     Tailwind
                                 </Button>

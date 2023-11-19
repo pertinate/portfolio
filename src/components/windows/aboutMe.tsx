@@ -75,11 +75,10 @@ const AboutMe = () => {
                     tech stacks, and delving into the exciting realm of machine
                     learning. I aim to be a versatile resource, contributing to
                     and learning from the ever-evolving landscape of software
-                    engineering.
-                </Text>
-                <Text className='indent-4'>
-                    Let&apos;s connect and explore the possibilities of creating
-                    innovative solutions together!
+                    engineering. Additionally, I&apos;m eager to expand my
+                    expertise in game development and game server technologies,
+                    aspiring to develop engaging and innovative games in the
+                    near future.
                 </Text>
             </section>
             <div className='flex justify-center'>

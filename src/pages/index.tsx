@@ -37,6 +37,8 @@ import { ContactMeIcon } from '~/components/windows/contactMe';
 import { ThisStackIcon } from '~/components/windows/thisStack';
 import { CurrentProjectsIcon } from '~/components/windows/currentProjects';
 import { SignInButton, SignedOut, UserButton, useAuth } from '@clerk/nextjs';
+import { GetServerSideProps } from 'next';
+import { buildClerkProps, getAuth } from '@clerk/nextjs/server';
 
 export default function Home() {
     const store = useStore();
@@ -106,3 +108,15 @@ export default function Home() {
         </>
     );
 }
+
+// eslint-disable-next-line @typescript-eslint/require-await
+export const getServerSideProps: GetServerSideProps = async ctx => {
+    const { userId } = getAuth(ctx.req);
+
+    if (!userId) {
+        // handle user is not logged in.
+    }
+
+    // Load any data your application needs for the page using the userId
+    return { props: { ...buildClerkProps(ctx.req) } };
+};
