@@ -3,6 +3,7 @@ import { FaPersonBooth, FaQuestion } from 'react-icons/fa';
 import AppWindow from '../appWindow';
 import PortfolioIcon from '../portfolioIcon';
 import { useStore } from '~/store/store';
+import Link from 'next/link';
 
 export const ThisStackIcon = () => {
     const store = useStore();
@@ -60,22 +61,67 @@ const ThisStack = () => {
                     <div className='my-4'>
                         <List icon={<></>} spacing={'xs'}>
                             <List.Item>
-                                <Button variant='light'>Next.js</Button>
+                                <Button
+                                    component={Link}
+                                    href={'https://nextjs.org/'}
+                                    variant='light'
+                                >
+                                    Next.js
+                                </Button>
                             </List.Item>
                             <List.Item>
-                                <Button variant='light'>Prisma</Button>
+                                <Button
+                                    component={Link}
+                                    href={'https://create.t3.gg/'}
+                                    variant='light'
+                                >
+                                    T3
+                                </Button>
                             </List.Item>
                             <List.Item>
-                                <Button variant='light'>Mantine</Button>
+                                <Button
+                                    component={Link}
+                                    href={'https://www.prisma.io/'}
+                                    variant='light'
+                                >
+                                    Prisma
+                                </Button>
                             </List.Item>
                             <List.Item>
-                                <Button variant='light'>Zustand</Button>
+                                <Button
+                                    component={Link}
+                                    href={'https://mantine.dev/'}
+                                    variant='light'
+                                >
+                                    Mantine
+                                </Button>
                             </List.Item>
                             <List.Item>
-                                <Button variant='light'>Zod</Button>
+                                <Button
+                                    component={Link}
+                                    href={'https://github.com/pmndrs/zustand'}
+                                    variant='light'
+                                >
+                                    Zustand
+                                </Button>
                             </List.Item>
                             <List.Item>
-                                <Button variant='light'>Tailwind</Button>
+                                <Button
+                                    component={Link}
+                                    href={'https://zod.dev/'}
+                                    variant='light'
+                                >
+                                    Zod
+                                </Button>
+                            </List.Item>
+                            <List.Item>
+                                <Button
+                                    component={Link}
+                                    href={'https://tailwindcss.com/'}
+                                    variant='light'
+                                >
+                                    Tailwind
+                                </Button>
                             </List.Item>
                         </List>
                     </div>

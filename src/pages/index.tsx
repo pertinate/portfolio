@@ -36,11 +36,13 @@ import { AboutMeIcon } from '~/components/windows/aboutMe';
 import { ContactMeIcon } from '~/components/windows/contactMe';
 import { ThisStackIcon } from '~/components/windows/thisStack';
 import { CurrentProjectsIcon } from '~/components/windows/currentProjects';
+import { SignInButton, SignedOut, UserButton, useAuth } from '@clerk/nextjs';
 
 export default function Home() {
     const store = useStore();
     // const hello = api.post.hello.useQuery({ text: 'from tRPC' });
     const mantineColorScheme = useMantineColorScheme();
+    const auth = useAuth();
 
     const isMobile = useMediaQuery('(max-width: 900px)');
     return (
@@ -62,8 +64,9 @@ export default function Home() {
                 <meta property='og:image' content='/favicon.ico' />
             </Head>
             <main className='h-full flex flex-col'>
+                {/* {auth.userId} */}
                 {/* <Socials /> */}
-                {isMobile == true && 'test'}
+                {/* {isMobile == true && 'test'} */}
                 <div className='grow'>
                     <div className='flex flex-wrap gap-4 m-2'>
                         <AboutMeIcon />
@@ -85,6 +88,13 @@ export default function Home() {
                 >
                     <div className='flex h-12 items-center'>
                         <div className='grow flex gap-2 ml-1'>
+                            <PortfolioIcon>
+                                <UserButton afterSignOutUrl='/' />
+                                <SignedOut>
+                                    {/* Signed out users get sign in button */}
+                                    <SignInButton mode='modal' />
+                                </SignedOut>
+                            </PortfolioIcon>
                             {store.windows.opened.map(entry => (
                                 <>{iconRouter(entry)}</>
                             ))}
