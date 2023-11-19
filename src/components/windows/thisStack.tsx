@@ -33,7 +33,7 @@ const ThisStack = () => {
             window='this_stack'
             title={`What's used in this stack`}
             width={420}
-            height={540}
+            height={600}
         >
             <div className='p-4'>
                 <Text>
