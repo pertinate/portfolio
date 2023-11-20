@@ -39,6 +39,7 @@ import { CurrentProjectsIcon } from '~/components/windows/currentProjects';
 import { SignInButton, SignedOut, UserButton, useAuth } from '@clerk/nextjs';
 import { GetServerSideProps } from 'next';
 import { buildClerkProps, getAuth } from '@clerk/nextjs/server';
+import { CalculatorIcon } from '~/components/windows/apps/calculator';
 
 export default function Home() {
     const store = useStore();
@@ -75,6 +76,7 @@ export default function Home() {
                         <ContactMeIcon />
                         <ThisStackIcon />
                         <CurrentProjectsIcon />
+                        <CalculatorIcon />
                     </div>
                     {store.windows.opened.map(entry => (
                         <>{windowRouter(entry)}</>
